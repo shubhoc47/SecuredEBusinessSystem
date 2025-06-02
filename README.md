@@ -1,7 +1,3 @@
-You're right, I have a good overview of the components and structure we've discussed for your "Secured e-Business System." Based on that, I will generate a more precise README.md file.
-
-I will make some assumptions (like the project name and specific plain text passwords for the sample users – you must ensure the corresponding hashes are in your data.sql). Please review and adjust these assumptions if they don't match your final setup.
-
 # Secured e-Business System (Jakarta EE)
 
 This project is a 3-tier enterprise application developed for an online devices sales company, built using Jakarta EE technologies. It features secure user registration with email verification, user login/logout, password recovery, product inventory management (laptops and smartphones), customer record keeping, and order processing with stock management.
@@ -61,7 +57,7 @@ This project is a 3-tier enterprise application developed for an online devices 
 
 ### 1. Clone the Repository (If applicable)
 ```bash
-git clone https://github.com/[YOUR_GITHUB_USERNAME]/SecuredEBusinessSystem.git
+git clone [https://github.com/[YOUR_GITHUB_USERNAME]/SecuredEBusinessSystem.git](https://github.com/shubhoc47/SecuredEBusinessSystem.git)
 cd SecuredEBusinessSystem
 
 
@@ -210,16 +206,6 @@ The "Admin" functionality (e.g., creating customers, seeing all orders) is curre
 
 This project uses drop-and-create-tables for DDL generation, which is suitable for development and ensures the data.sql script populates a clean schema on each deployment. For data persistence across deployments without re-seeding, change this property in persistence.xml (e.g., to create-tables or validate-tables).
 
----
-
-**Remember to:**
-
-*   Replace `[YOUR_GITHUB_USERNAME]` in the clone URL.
-*   Verify the plain text passwords in the "Sample Users" section match what you actually used to generate the hashes in your `data.sql`.
-*   If your project name in NetBeans (and thus the default context root) is different from `SecuredEBusinessSystem`, update that.
-*   Fill in any other specific version numbers for JDK, NetBeans, GlassFish, MySQL if you want to be precise.
-
-This README is now much more tailored to the project we've built.
 IGNORE_WHEN_COPYING_START
 content_copy
 download
