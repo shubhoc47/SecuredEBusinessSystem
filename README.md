@@ -1,4 +1,4 @@
-[# Secured e-Business System (Jakarta EE)
+# Secured e-Business System (Jakarta EE)
 
 This project is a 3-tier enterprise application developed for an online devices sales company, built using Jakarta EE technologies. It features secure user registration with email verification, user login/logout, password recovery, product inventory management (laptops and smartphones), customer record keeping, and order processing with stock management.
 
