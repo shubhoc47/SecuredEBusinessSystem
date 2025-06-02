@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<ui:composition template="layout.xhtml">
+    <ui:define name="title">Order Search Results</ui:define>
+    <ui:define name="heading">Search Result for Order ID: #{orderController.searchOrderId}</ui:define>
+    <ui:define name="content">
+        <h:messages globalOnly="true" infoClass="msg_info" errorClass="msg_error" warnClass="msg_warn"/>
+        <h:panelGroup rendered="#{not empty orderController.foundOrder}">
+            <h:form>
+                <h3>Order Details</h3>
+                <h:panelGrid columns="2">
+                    <h:outputText value="Order ID:"/>
+                    <h:outputText value="#{orderController.foundOrder.id}"/>
+
+                    <h:outputText value="Customer Name:"/>
+                    <h:outputText value="#{orderController.foundOrder.customer.name}"/>
+
+                    <h:outputText value="Product:"/>
+                    <h:outputText value="#{orderController.foundOrder.product.brand} #{orderController.foundOrder.product.model}"/>
+
+                    <h:outputText value="Quantity:"/>
+                    <h:outputText value="#{orderController.foundOrder.quantity}"/>
+
+                    <h:outputText value="Unit Price at Order:"/>
+                    <h:outputText value="#{orderController.foundOrder.unitPriceAtOrder}">
+                        <f:convertNumber type="currency" currencySymbol="$"/>
+                    </h:outputText>
+
+                    <h:outputText value="Total Price:"/>
+                    <h:outputText value="#{orderController.foundOrder.totalPrice}">
+                        <f:convertNumber type="currency" currencySymbol="$"/>
+                    </h:outputText>
+
+                    <h:outputText value="Order Date:"/>
+                    <h:outputText value="#{orderController.foundOrder.orderDate}">
+                        <f:convertDateTime pattern="yyyy-MM-dd HH:mm:ss"/>
+                    </h:outputText>
+                </h:panelGrid>
+                <br/>
+
+            </h:form>
+        </h:panelGroup>
+        <h:outputText value="Order with ID #{orderController.searchOrderId} not found."
+                      rendered="#{empty orderController.foundOrder and facesContext.messageList.isEmpty()}"/>
+        <br/>
+        <h:link outcome="searchOrder" value="New Order Search"/> | <h:link outcome="default" value="Main Page"/>
+    </ui:define>
+</ui:composition>
+</html>

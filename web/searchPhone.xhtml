@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<ui:composition template="layout.xhtml">
+    <ui:define name="title">Search Phones</ui:define>
+    <ui:define name="heading">Search for a phone</ui:define> 
+    <ui:define name="content">
+        <h:form id="searchPhoneForm">
+            <h:messages globalOnly="false" infoClass="msg_info" errorClass="msg_error" warnClass="msg_warn"/>
+            <h:panelGrid columns="2">
+                <h:outputLabel value="Model:" for="searchModelPhone"/>
+                <h:inputText id="searchModelPhone" value="#{productController.searchModel}" />
+            </h:panelGrid>
+            <h:commandButton value="Search for a phone" action="#{productController.doSearchSmartphonesByModel}"/> 
+            <br/><br/>
+            <h:link outcome="listSmartphones" value="The Stock of Phones"/> | <h:link outcome="default" value="Main Page"/>
+        </h:form>
+
+        
+        <hr/>
+        <h4>The found phones</h4>
+        <h:dataTable value="#{productController.smartphoneSearchResults}" var="phone" border="1"
+                     rendered="#{not empty productController.smartphoneSearchResults}"
+                     styleClass="product-table" rowClasses="odd-row,even-row">
+            <h:column><f:facet name="header">Brand</f:facet>#{phone.brand}</h:column>
+            <h:column><f:facet name="header">Model</f:facet>#{phone.model}</h:column>
+            <h:column><f:facet name="header">Display Size</f:facet>#{phone.displaySize}</h:column>
+            <h:column><f:facet name="header">Weight(gram)</f:facet>#{phone.weightGrams}</h:column>
+            <h:column><f:facet name="header">Operating System</f:facet>#{phone.operatingSystem}</h:column>
+            <h:column><f:facet name="header">Camera</f:facet>#{phone.cameraSpec}</h:column>
+            <h:column><f:facet name="header">Wi-Fi</f:facet>#{phone.wifiSpec}</h:column>
+            <h:column><f:facet name="header">Price</f:facet>
+                <h:outputText value="#{phone.price}"><f:convertNumber type="currency" currencySymbol="$"/></h:outputText>
+            </h:column>
+            <h:column><f:facet name="header">Description</f:facet>#{phone.description}</h:column>
+            <h:column><f:facet name="header">Stock Number</f:facet>#{phone.stockQuantity}</h:column>
+            <h:column><f:facet name="header">Cellular Connectivity</f:facet>#{phone.cellularConnectivity}</h:column>
+            <h:column><f:facet name="header">Location</f:facet>#{phone.locationServices}</h:column>
+            <h:column><f:facet name="header">Sim Card</f:facet>#{phone.simCardType}</h:column>
+        </h:dataTable>
+        <h:outputText value="No phones found matching your criteria." rendered="#{empty productController.smartphoneSearchResults and facesContext.validationFailed == false and facesContext.messageList.size() == 0}"/>
+        <p>Total phones: <h:outputText value="#{productController.smartphoneSearchResults.size()}" rendered="#{not empty productController.smartphoneSearchResults}"/><h:outputText value="0" rendered="#{empty productController.smartphoneSearchResults}"/></p>
+        <br/>
+        <h:link outcome="newSmartphone" value="Create a Phone"/> | <h:link outcome="default" value="Main Page"/>
+    </ui:define>
+</ui:composition>
+</html>
